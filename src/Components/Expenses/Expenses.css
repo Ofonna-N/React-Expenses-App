@@ -1,0 +1,56 @@
+@import "../../index.css";
+
+.expense-container
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #322E18;
+    border-radius: 15px;
+    box-shadow: 0px 5px 5px;
+    width: 80%;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.expense-container > div
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.expense-container > div > p:nth-child(2)
+{
+    color: white;
+    text-transform: capitalize;
+}
+
+p{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+button
+{
+    padding: 1em 2em;
+    font-size: 20px;
+    font-weight: bold;
+    /* color: white; */
+    background-color: #B7B5E4;
+    border-radius: 10px;
+    border-width: 3px;
+    cursor: pointer;
+    /* border-color: white; */
+}
+
+.date-info
+{
+    text-align: center;
+    /* border-color: black; */
+    background-color: #847979;
+    border: solid;
+    width: 100px;
+    border-width: 2px;
+    border-radius: 10px;
+}
