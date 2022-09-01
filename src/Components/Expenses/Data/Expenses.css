@@ -1,0 +1,168 @@
+@import "../../../index.css";
+
+.expenses-container
+{
+    width: 60%;
+    margin-inline: auto;
+    margin-top: 3em;
+    background-color: rgb(32, 30, 16);
+    padding: 1.5em;
+    border-radius: 5px;
+}
+
+.expense-container
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #322E18;
+    border-radius: 15px;
+    box-shadow: 0px 5px 5px;
+    /* width: 80%; */
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.expense-container > div
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.expense-container > div > h1
+{
+    color: white;
+    text-transform: capitalize;
+}
+
+
+
+.expense-price
+{
+    padding: 1em 2em;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: solid;
+    background-color: #B7B5E4;
+    border-radius: 10px;
+    border-width: 3px;
+    /* cursor: pointer; */
+    /* border-color: white; */
+}
+
+.date-info
+{
+    text-align: center;
+    background-color: #847979;
+    border: solid;
+    width: 100px;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: white;
+}
+
+.date-info > p
+{
+    font-weight: bold;
+}
+
+.date-info > .month
+{
+    font-size: 16px;
+}
+
+.date-info > .year
+{
+    font-size: 10px;
+}
+
+.date-info > .day
+{
+    font-size: 30px;
+    /* border: solid; */
+    margin-top: -5px;
+}
+
+.expense-form-container
+{
+    margin-top: 2em;
+    margin-inline: auto;
+    background-color: #B7B5E4;
+    width: 40%;
+    min-width: 300px;
+    padding: 1em;
+    border-radius: 5px;
+    position: relative;
+}
+
+.expense-form-container .form-button
+{
+    float: right;
+    margin-right: 2em;
+    padding: 1em;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 150px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rebeccapurple;
+}
+
+.form-button-container
+{
+    overflow: auto;
+    margin-top: 1.5em;
+    /* background: yellow */
+}
+
+.form-input-container
+{
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+    width: inherit;
+    flex-grow: 1;
+    /* align-items:flex-start; */
+    /* justify-content: start; */
+    /* background-color: red; */
+}
+
+.form-input-container > label
+{
+    font-weight: bold;
+}
+
+.form-row
+{
+    display: flex;
+    margin-bottom: 15px;
+    padding: 1em;
+    flex-flow: row wrap;
+    /* width: 100%; */
+    /* justify-content: stretch; */
+    /* justify-content: stretch; */
+    /* background-color: #322E18; */
+    gap:20px;
+}
+
+.expense-form-container input[type="text"], 
+.expense-form-container input[type="number"], 
+.expense-form-container input[type="date"]
+{
+    /* background-color: aqua; */
+    padding: 1em 2em;
+    border-radius: 5px;
+    /* width: 100%; */
+    border: none;
+}
+
+.expense-form-container input[type="text"]:focus, 
+.expense-form-container input[type="number"]:focus, 
+.expense-form-container input[type="date"]:focus
+{
+    /* background-color: #847979; */
+    /* border-color: #847979; */
+    outline-color: #847979;
+}
