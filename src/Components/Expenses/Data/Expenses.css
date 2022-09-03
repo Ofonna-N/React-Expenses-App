@@ -3,14 +3,77 @@
 .expenses-container
 {
     width: 60%;
-    margin-inline: auto;
-    margin-top: 3em;
+    /* margin-inline: auto; */
+    /* margin-top: 3em; */
+    margin: 3em auto;
     background-color: rgb(32, 30, 16);
     padding: 1.5em;
     border-radius: 5px;
+    
 }
 
-.expense-container
+.expense-filter-input-container
+{
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.expense-filter-input-container > label
+{
+    font-weight: bold;
+    color: white;
+    font-size: large;
+}
+
+.expense-filter-input-container > select
+{
+    padding: 0.25em 1em;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+}
+
+.filter-display-container
+{
+    background-color: #B7B5E4;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.filter-bar
+{
+    height: 150px;
+    width: 20px;
+    background-color: #5B5449;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.filter-fill-bar
+{
+    background-color: #A2AD59;
+    width: inherit;
+    /* border-radius: inherit; */
+    position: absolute;
+    bottom: 0;
+    height: 60%;
+    /* clip-path: content-box; */
+}
+
+.filter-bar + p
+{
+    font-weight: 500;
+}
+
+.expense-card
 {
     display: flex;
     justify-content: space-between;
@@ -23,14 +86,14 @@
     margin-bottom: 1em;
 }
 
-.expense-container > div
+.expense-card > div
 {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.expense-container > div > h1
+.expense-card > div > h1
 {
     color: white;
     text-transform: capitalize;

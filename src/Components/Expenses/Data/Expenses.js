@@ -1,27 +1,79 @@
 
 
+import Keygen from "keygenerator/lib/keygen";
+import React, { useId, useState } from "react";
 import ExpensesForm from "../Form/Expenses-From";
 
-/**
- * 
- * @param {object} props 
- * @param {ExpenseData[]} props._expenses 
- * @param {Function} props._onAddExpense 
- * @returns 
- */
+let keyGen = require("keygenerator");
 
- function Expenses(props)
- {
+
+
+
+// console.log("Hellp");
+function Expenses()
+{
+    const _expenses = 
+    [
+        
+    ];
+
+    //console.log(getFilteredExpenses('2022'));
+    const[updatedExpenses, updateExpenses] = useState(_expenses);
+
+    const[filteredDate, updateFilteredDate] = useState("2022");
+
+    const getFilteredExpenses = function(year)
+    {
+        const filteredExpense = [];
+        updatedExpenses.forEach(e => 
+        {
+            let expenseYear = new Intl.DateTimeFormat('en-US', {year:'numeric'}).format(e.date);
+            // console.log();
+            if (year == expenseYear) 
+            {
+                filteredExpense.push(e);
+                //console.log(`show ${e.title}`);    
+            }
+        });
+
+        return filteredExpense;
+    }
+
+    let expensesDisplayItems = getFilteredExpenses(filteredDate).map(expense => <ExpenseCard key={expense.id} title={expense.title} price={expense.price} date={expense.date} />);
+
+    if (expensesDisplayItems.length <= 0) 
+    {
+        expensesDisplayItems = <h1 style={{color:"white", textAlign:"center"}}>No Expenses Registered</h1>    
+    }
+
+    const onAddExpense = function(expenseData)
+    {
+        updateExpenses([expenseData, ...updatedExpenses])
+    }
+
     
+
+    const onFilterExpenseChanged = function(event)
+    {
+        if(updatedExpenses.length <= 0)return;
+        const selectedYear = event.target.value;
+        
+        updateFilteredDate(selectedYear);
+    }
+
      return(
          <div>
-            <ExpensesForm _onAddExpense={props._onAddExpense} />
+            <ExpensesForm _onAddExpense={onAddExpense} />
             <div className="expenses-container">
-             <Expense title={props._expenses[0].title} price={props._expenses[0].price} date={props._expenses[0].date} />
-             <Expense title={props._expenses[1].title} price={props._expenses[1].price} date={props._expenses[1].date} />
-             <Expense title={props._expenses[2].title} price={props._expenses[2].price} date={props._expenses[2].date} />
-             <Expense title={props._expenses[3].title} price={props._expenses[3].price} date={props._expenses[3].date} />
-         </div>
+                <div>
+                    <ExpenseFilterInput _onchanged={onFilterExpenseChanged} />
+                    <FilterDisplay/>
+                </div>
+
+                <div className="expense-cards-container">
+                {expensesDisplayItems}  
+                </div>
+            </div>
          </div>
      );
  }
@@ -35,12 +87,12 @@ import ExpensesForm from "../Form/Expenses-From";
  * @param {Date} props.date 
  * @returns 
  */
-function Expense(props)
+function ExpenseCard(props)
 {
-
+    // console.log(props.title);
     return(
 
-        <div className="expense-container">
+        <div className="expense-card">
             <div>
                 <ExpenseDate date={props.date}/>
                 <h1>{props.title}</h1>
@@ -70,16 +122,61 @@ function ExpenseDate(props)
     );
 }
 
+function ExpenseFilterInput(props)
+{
+
+    return(
+        <div className="expense-filter-input-container">
+            <label form="expense-form" htmlFor="expense-filter">Filter by year</label>
+
+            <select name="expense-filter" defaultValue="2022" onChange={props._onchanged}>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
+    );
+}
+
+function FilterDisplay()
+{
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    let displayBars = months.map(month => <FilterMonthBar key={Keygen._()} month={month}/>);
+    return(
+        <div className="filter-display-container">
+            {displayBars}
+        </div>
+    );
+}
+
+function FilterMonthBar(props)
+{
+    return(
+        <div>
+            <div className="filter-bar">
+            <div className="filter-fill-bar"></div>
+            </div>
+            
+            <p>{props.month}</p>
+        </div>
+    );
+}
+
+
+
 class ExpenseData
 {
     /**
-     * 
+     * @param {string} id 
      * @param {string} title 
      * @param {number} price 
      * @param {Date} date 
      */
-    constructor(title, price, date)
+    constructor(id, title, price, date)
     {
+        this.id = id;
         this.title = title;
         this.price = price;
         this.date = date;
@@ -89,4 +186,4 @@ class ExpenseData
 
 export default Expenses;
 
-export {ExpenseData};
+export {ExpenseData, keyGen};

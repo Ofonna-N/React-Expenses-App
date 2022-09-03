@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import {ExpenseData} from "../Data/Expenses";
+import {ExpenseData, keyGen} from "../Data/Expenses";
 
 const currentDate = ()=>
     {
@@ -49,13 +49,13 @@ function ExpensesForm(props)
     const submitEventHandler = (event)=>
     {
         event.preventDefault();
-        if (enteredTitle == '' || enteredTitle == undefined) 
+        if (enteredTitle === '' || enteredTitle === undefined) 
         {
             window.alert("Please Enter Title Field");
             return;
         }
 
-        const expenseData = new ExpenseData(enteredTitle, enteredAmount, enteredDate);
+        const expenseData = new ExpenseData(keyGen._({specials:true}), enteredTitle, enteredAmount, new Date(enteredDate));
         props._onAddExpense(expenseData);
         //console.log(expenseData);
         setEnteredTitle('');
@@ -66,20 +66,20 @@ function ExpensesForm(props)
 
     return(
         <div className="expense-form-container">
-            <form onSubmit={submitEventHandler}>
+            <form onSubmit={submitEventHandler} id="expense-form">
                 <div className="form-row">
                     <div className="form-input-container">
-                        <label>Title</label>
-                        <input type="text" value={enteredTitle} onChange={titleChangedHandler}/>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" name="title" value={enteredTitle} onChange={titleChangedHandler}/>
                     </div>
                     <div className="form-input-container">
-                        <label>Amout</label>
-                        <input type="number" value={enteredAmount} min="0.01" step="0.01" required onChange={amountChangedHandler}/>
+                        <label htmlFor="amount">Amout</label>
+                        <input type="number" name="amount" value={enteredAmount} min="0.01" step="0.01" required onChange={amountChangedHandler}/>
                     </div>
                 </div>
                 <div className="form-input-container">
-                    <label>Date</label>
-                    <input type="date" value={enteredDate} min="2019-01-01" max={currentDate()} required onChange={dateChangedHandler}/>
+                    <label htmlFor="date">Date</label>
+                    <input type="date" name="date" value={enteredDate} min="2019-01-01" max={currentDate()} required onChange={dateChangedHandler}/>
                 </div>
                 <div className="form-button-container">
                     <input type="submit" required className="form-button" value="Add Expense"/>
